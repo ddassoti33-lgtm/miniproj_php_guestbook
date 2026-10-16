@@ -15,11 +15,11 @@ h1{
     margin-left: 300px;
 }
 
-.form{
+form{
     margin-top: -70px;
 }
 
-input.nom, input.msg{
+input.nom, textarea.msg{
     padding: 15px;
     width: 100%;
     max-width: 630px;
@@ -38,11 +38,27 @@ input.btn{
     color: white;
     border-radius: 10px;
 }
-input.btn::hover{
-   
-}
+
 
 h6{
     font-size: 20px;
     margin-top: -5px;
+}
+
+
+div.message{
+    background-color: rgb(169, 178, 215);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -10px;
+}
+.message h2{
+    font-size: 20px;
+    margin-top: -10px;
+    width: 50px;
+}
+.message p{
+    margin-top: -20px;
+    overflow-wrap: break-word; 
+    word-break: break-word;
 }

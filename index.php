@@ -1,3 +1,4 @@
+<?php require 'config.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +12,27 @@
     <div class="container">
     <h1><i class="fa-solid fa-book-open"></i> Livre d'or</h1>
        
-        <div class="form">
+        <form action="ajouter.php" method="POST" >
             <p>votre nom : </p>
-            <input type="text" placeholder="votre nom ..." id="nom" class="nom">
+            <input type="text" placeholder="votre nom ..." name="nom" id="nom" class="nom" required>
             <p>votre message : </p>
-            <input type="text" placeholder="écrivez votre message ici ..." id="msg" class="msg"><br/>
-            <input type="button" value="Envoyer" id="btn" class="btn">
-        </div>
+            <textarea type="text" placeholder="écrivez votre message ici ..." name="msg" id="msg" class="msg" required></textarea><br/>
+            <input type="submit" value="Envoyer" id="btn" class="btn">
+        </form>
     <hr><hr>
         <div class="messages">
             <h6>Messages récents</h6>
-            <div class="message">
-                
-            </div>
+            <?php
+            $stmt = $pdo->prepare('SELECT * FROM messages ORDER BY created_at DESC LIMIT 10');
+            $stmt->execute();
+            $messages = $stmt->fetchAll();
+            ?>
+            <?php foreach ($messages as $message): ?>
+                <div class="message">
+                    <h2><?= htmlspecialchars($message['nom']) ?></h2> <br/>
+                    <p><?= htmlspecialchars($message['message']) ?></p>
+                </div><br/>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>
